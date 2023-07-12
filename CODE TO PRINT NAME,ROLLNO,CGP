@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main()
+{
+    int name,rollno;
+    float cgp;
+    printf("enter the name,rollno and cgp of the sudent");
+    scanf("%d%d%d",&name,&rollno,&cgp);
+    
+}
+    
+    return 0;
+}
