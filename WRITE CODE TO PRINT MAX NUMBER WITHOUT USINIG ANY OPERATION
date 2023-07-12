@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    int a=55 ,b=699;
+    int max=((a+b)+abs(a-b))/2;
+        int min=((a+b)-abs(a-b))/2;
+        printf("%d",max);
+}
+8)WRITE CODE TO PRINT MAX NUMBER WITHOUT USINIG ANY OPERATION 
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    int a=55 ,b=699;
+    int max=((a+b)+abs(a-b))/2;
+        int min=((a+b)-abs(a-b))/2;
+        printf("%d",min);
+}
