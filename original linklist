@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int val;
+    struct node *next;
+};
+
+void printlist(struct node *head)
+{
+    printf("H->");
+    while (head)
+    {
+        printf("%d->", head->val);
+        head = head->next;
+    }
+    printf(".....");
+}
+
+void insertfront(struct node **head, int value)
+{
+    struct node *newnode = NULL;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL)
+    {
+        printf("out of memory");
+    }
+    newnode->val = value;
+    newnode->next = *head;
+    *head = newnode;
+}
+
+void insertend(struct node **head, int value)
+{
+    struct node *newnode = NULL;
+    struct node *last = NULL;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL)
+    {
+        printf("out of memory");
+    }
+    newnode->val = value;
+    newnode->next = NULL;
+    if (*head == NULL)
+    {
+        *head = newnode;
+        return;
+    }
+    last = *head;
+    while (last->next)
+        last = last->next;
+    last->next = newnode;
+}
+
+void insertmiddle(struct node **head, int position, int value)
+{
+    struct node *newnode = NULL;
+    struct node *current = *head;
+    int i;
+
+   
+    for (i = 1; i < position && current != NULL; i++)
+    {
+        current = current->next;
+    }
+
+    if (current == NULL)
+    {
+        printf("Invalid position\n");
+        return;
+    }
+
+    
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if (newnode == NULL)
+    {
+        printf("out of memory");
+        return;
+    }
+    newnode->val = value;
+    newnode->next = current->next;
+    current->next = newnode;
+}
+
+int main()
+{
+    int count = 0;
+    int val;
+    int i;
+    int position;
+    struct node *head = NULL;
+
+    printf("enter the number of elements: ");
+    scanf("%d", &count);
+
+    for (i = 0; i < count; i++)
+    {
+        printf("enter the %dth element: ", i);
+        scanf("%d", &val);
+        insertfront(&head, val);
+    }
+
+    printf("starting list: ");
+    printlist(head);
+
+    printf("\nenter front element: ");
+    scanf("%d", &val);
+    insertfront(&head, val);
+    printf("list after inserting at the beginning: ");
+    printlist(head);
+
+    printf("\nenter the last element: ");
+    scanf("%d", &val);
+    insertend(&head, val);
+    printf("list after inserting at the end: ");
+    printlist(head);
+
+    printf("\nenter the position to insert: ");
+    scanf("%d", &position);
+    printf("enter the element to insert: ");
+    scanf("%d", &val);
+    insertmiddle(&head, position, val);
+    printf("list after inserting at position %d: ", position);
+    printlist(head);
+
+    return 0;
+}
